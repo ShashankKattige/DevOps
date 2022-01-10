@@ -1,1 +1,3 @@
-this is File B 
+this is File B.version 1 and changes add
+new line also added;
+
