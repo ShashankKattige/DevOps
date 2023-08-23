@@ -1,1 +1,4 @@
-
+Network Policies in Kubernetes are additive, meaning that if there is any Network Policy that allows a certain type of traffic, traffic will be allowed even if another Network Policy would block it. This design choice is based on the principle of explicitly allowed over "implicit deny".
+ If one policy that denies all ingress traffic and one that allows all ingress traffic. Kubernetes will sum these policies, and the result is that all ingress traffic is allowed. The policy to allow traffic is considered an explicit rule that should be followed, even if there's a more general policy that would deny the traffic.
+However, it's important to note that this does NOT mean that allow policies always take precedence over deny policies. Rather, all policies are evaluated, and if there is any policy that would allow the traffic, then the traffic is allowed.
+This is why when designing your Network Policies, we typically start with a broad deny policy, and then add specific allow policies for just the traffic you want to permit. We will see more examples of this in the upcoming labs.
